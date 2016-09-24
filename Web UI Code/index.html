@@ -1,0 +1,331 @@
+
+
+<!Doctype html>
+<html>
+<head>
+    <style>
+        .button {
+            border-top: 1px solid #d4a590;
+            background: #d4a590;
+            background: -webkit-gradient(linear, left top, left bottom, from(#d4a590), to(#d4a590));
+            background: -webkit-linear-gradient(top, #d4a590, #d4a590);
+            background: -moz-linear-gradient(top, #d4a590, #d4a590);
+            background: -ms-linear-gradient(top, #d4a590, #d4a590);
+            background: -o-linear-gradient(top, #d4a590, #d4a590);
+            padding: 3px 6px;
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            border-radius: 4px;
+            -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+            -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+            box-shadow: rgba(0,0,0,1) 0 1px 0;
+            text-shadow: rgba(0,0,0,.4) 0 1px 0;
+            color: #000000;
+            font-size: 13px;
+            font-family: 'Lucida Grande', Helvetica, Arial, Sans-Serif;
+            text-decoration: none;
+            vertical-align: middle;
+        }
+
+            .button:hover {
+                border-top-color: #000000;
+                background: #000000;
+                color: #fafafa;
+            }
+
+            .button:active {
+                border-top-color: #d4a590;
+                background: #d4a590;
+            }
+
+        .element {
+            width: 8em;
+            height: 2em;
+            border: 0.1em solid #ccc;
+            border-radius: 0.5em;
+            background-color: #d4a590;
+			margin-top: 5px;
+			margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div style="margin-top:10px;margin-left:500px">
+        <form action="http://cmpe239.azurewebsites.net/graphs.html">
+            <input class="button" type="submit" value="View Evaluations">
+        </form>
+    </div>
+    <br />
+    <div style="margin-top:120px;margin-left:75px">
+	<table>
+	<tr>
+	<td>Age :</td>
+	<td><input class="element" type="number" min="0" id="age" /></td>
+	</tr>
+	<tr>
+	<td>Education Status:</td>
+	<td><input type="number" class="element" max="4" min="1" id="education" /></td>
+	</tr>
+	<tr>
+	<td>Marital Status:</td>
+	<td><input type="number" class="element" max="3" min="1" id="marital" /></td>
+	</tr>
+	<tr>
+	<td>Job :</td>
+	<td><input class="element" type="number" max="12" min="1" id="job" /></td>
+	</tr>
+	<tr>
+	<td>Default :</td>
+	<td><input type="number" class="element" max="1" min="0" id="default" /></td>
+	</tr>
+	<tr>
+	<td>Balance :</td>
+	<td><input type="number" class="element" min="0" id="balance" /></td>
+	</tr>
+	<tr>
+	<td>Housing :</td>
+	<td><input type="number" class="element" max="1" min="0" id="housing" /></td>
+	</tr>
+	<tr>
+	<td>Loan :</td>
+	<td><input type="number" class="element" max="1" min="0" id="loan" /></td>
+	</tr>
+	</table>
+</div>
+<div style="margin-top:-347px;margin-left:430px">
+	<table>
+	<tr>
+	<td>Contact :</td>
+	<td><input type="number" class="element" max="3" min="1" id="contact" /></td>
+	</tr>
+	<tr>
+	<td>Day :</td>
+	<td><input type="number" class="element" max="31" min="1" id="day" /></td>
+	</tr>
+	<tr>
+	<td>Month :</td>
+	<td><select id="myselect" class="element">
+            <option value=null>---Select---</option>
+            <option value="January">January</option>
+            <option value="February">February</option>
+            <option value="March">March</option>
+            <option value="April">April</option>
+            <option value="May">May</option>
+            <option value="June">June</option>
+            <option value="July">July</option>
+            <option value="August">August</option>
+            <option value="September">September</option>
+            <option value="October">October</option>
+            <option value="November">November</option>
+            <option value="December">December</option>
+        </select></td>
+	</tr>
+	<tr>
+	<td>Duration :</td>
+	<td><input type="number" class="element" min="0" id="duration" /></td>
+	</tr>
+	<tr>
+	<td>Campaign :</td>
+	<td><input type="number" class="element" min="0" id="campaign" /></td>
+	</tr>
+	<tr>
+	<td>Last Contacted before :</td>
+	<td><input type="number" class="element" min="-1" id="pdays" /></td>
+	</tr>
+	<tr>
+	<td>Previous Attempts :</td>
+	<td><input type="number" class="element" min="0" id="previous" /></td>
+	</tr>
+	<tr>
+	<td>Previous Outcome :</td>
+	<td><input type="number" class="element" max="4" min="1" id="poutcome" /></td>
+	</tr>
+	
+	</table>
+    </div>
+    <div style="margin-left:850px;margin-top:-456px">
+        <input id="clickMe" type="button" class="button" value="2 Class Logistic Regression" onclick="regression()" />
+        <p id="regress">Output :<br />Scored Probability : </p>
+
+        <input id="clickMe" type="button" class="button" value="2 Class Support Vector Machine" onclick="supportvm()" />
+        <p id="svm">Output :<br />Scored Probability : </p>
+
+        <input id="clickMe" type="button" class="button" value="2 Class Neural Networks" onclick="neuralnet()" />
+        <p id="neural">Output :<br />Scored Probability : </p>
+
+        <input id="clickMe" type="button" class="button" value="2 Class Boosted Decision Tree" onclick="dectree()" />
+        <p id="boost">Output :<br />Scored Probability : </p>
+
+        <input id="clickMe" type="button" class="button" value="2 Class Decision Forest" onclick="deciforest()" />
+        <p id="decisforest">Output :<br />Scored Probability : </p>
+
+        <input id="clickMe" type="button" class="button" value="2 Class Decision Jungle" onclick="decjungle()" />
+        <p id="jungle">Output :<br />Scored Probability : </p>
+
+    </div>
+</body>
+
+</html>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script>
+   var age,month,poutcome,pdays,default1,balance,loan,job,marital,education,duration,housing,contact,day,previous,campaign;
+function decjungle()
+{
+	get_output();
+	var url="jungle.php";
+	var output=test(age,month,poutcome,pdays,default1,balance,loan,job,marital,education,duration,housing,contact,day,previous,campaign,url);
+	output=remove_tags(output);
+	obj=JSON.parse(output);
+	var fin='';
+	fin="Output : "+obj.Results.output1.value.Values[0][17].toString()+"</br>";
+	fin=fin+"Scored probability : "+obj.Results.output1.value.Values[0][18].toString();
+	document.getElementById("jungle").innerHTML=fin;
+
+}
+function dectree()
+{
+	get_output();
+	var url="boosted.php";
+	var output=test(age,month,poutcome,pdays,default1,balance,loan,job,marital,education,duration,housing,contact,day,previous,campaign,url);
+	output=remove_tags(output);
+	obj=JSON.parse(output);
+	var fin='';
+	fin="Output : "+obj.Results.output1.value.Values[0][17].toString()+"</br>";
+	fin=fin+"Scored probability : "+obj.Results.output1.value.Values[0][18].toString();
+	document.getElementById("boost").innerHTML=fin;
+
+}
+function neuralnet()
+{
+	get_output();
+	var url="neural.php";
+	var output=test(age,month,poutcome,pdays,default1,balance,loan,job,marital,education,duration,housing,contact,day,previous,campaign,url);
+	output=remove_tags(output);
+	obj=JSON.parse(output);
+	var fin='';
+	fin="Output : "+obj.Results.output1.value.Values[0][17].toString()+"</br>";
+	fin=fin+"Scored probability : "+obj.Results.output1.value.Values[0][18].toString();
+	document.getElementById("neural").innerHTML=fin;
+
+}
+function supportvm()
+{
+	get_output();
+	var url="svm.php";
+	var output=test(age,month,poutcome,pdays,default1,balance,loan,job,marital,education,duration,housing,contact,day,previous,campaign,url);
+	output=remove_tags(output);
+	obj=JSON.parse(output);
+	var fin='';
+	fin="Output : "+obj.Results.output1.value.Values[0][17].toString()+"</br>";
+	fin=fin+"Scored probability : "+obj.Results.output1.value.Values[0][18].toString();
+	document.getElementById("svm").innerHTML=fin;
+
+}
+
+function remove_tags(html)
+		{
+		   var tmp = document.createElement("DIV");
+		   tmp.innerHTML = html;
+		   return tmp.textContent || tmp.innerText || "";
+		}
+function get_output()
+{
+	age=document.getElementById("age").value;
+	 job=document.getElementById("job").value;
+	 marital=document.getElementById("marital").value;
+	 education=document.getElementById("education").value;
+	 loan=document.getElementById("loan").value;
+	 default1=document.getElementById("default").value;
+	 campaign=document.getElementById("campaign").value;
+	 previous=document.getElementById("previous").value;
+	 pdays=document.getElementById("pdays").value;
+	 duration=document.getElementById("duration").value;
+	 balance=document.getElementById("balance").value;
+	 contact=document.getElementById("contact").value;
+	 housing=document.getElementById("housing").value;
+	 day=document.getElementById("day").value;
+	 poutcome=document.getElementById("poutcome").value;
+	
+	index=document.getElementById("myselect").selectedIndex;
+	if(index==0)
+	month=8;
+	if(index==1)
+	month=9;
+	if(index==2)
+	month=10;
+	if(index==3)
+	month=11;
+	if(index==4)
+	month=1;
+	if(index==5)
+	month=2;
+	if(index==6)
+	month=3;
+	if(index==7)
+	month=4;
+	if(index==8)
+	month=12;
+	if(index==9)
+	month=5;
+	if(index==10)
+	month=6;
+	if(index==11)
+	month=7;
+	
+}
+function regression()
+{
+	get_output();
+	var url="regression.php";
+	var output=test(age,month,poutcome,pdays,default1,balance,loan,job,marital,education,duration,housing,contact,day,previous,campaign,url);
+	output=remove_tags(output);
+	obj=JSON.parse(output);
+	var fin='';
+	fin="Output : "+obj.Results.output1.value.Values[0][17].toString()+"</br>";
+	fin=fin+"Scored probability : "+obj.Results.output1.value.Values[0][18].toString();
+	document.getElementById("regress").innerHTML=fin;
+
+}
+function deciforest()
+{
+	get_output();
+	var url="decforest.php";
+	var output=test(age,month,poutcome,pdays,default1,balance,loan,job,marital,education,duration,housing,contact,day,previous,campaign,url);
+	output=remove_tags(output);
+	obj=JSON.parse(output);
+	var fin='';
+	fin="Output : "+obj.Results.output1.value.Values[0][17].toString()+"</br>";
+	fin=fin+"Scored probability : "+obj.Results.output1.value.Values[0][18].toString();
+	document.getElementById("decisforest").innerHTML=fin;
+
+}
+function test(age,month,poutcome,pdays,default1,balance,loan,job,marital,education,duration,housing,contact,day,previous,campaign,url)
+	{  
+	
+        
+		var ret;
+        $.ajax({
+            url: url,
+            data: {age:age,default1:default1,campaign:campaign,job:job,duration:duration,day:day,month:month,poutcome:poutcome,pdays:pdays,balance:balance,loan:loan,education:education,housing:housing,contact:contact,marital:marital,previous:previous},
+			async:false,
+            type: "GET",
+
+            success: function (d) {
+					ret=d;
+             
+            },
+
+            error: function (xhr, status, error) {
+                if (xhr.status > 0) callback("error");
+            }
+        });
+		return ret;
+
+  
+
+	}
+	
+
+
+ 
+</script>

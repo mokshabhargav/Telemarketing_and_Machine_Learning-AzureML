@@ -1,0 +1,286 @@
+
+<!Doctype HTML>
+<html>
+<head>
+<style>
+p {
+    font-size: 150%;
+}
+</style>
+</head>
+<body>
+<div id="regression" style="width: 1275px; height: 400px;"></div>
+<div id="boost" style="width: 1275px; height: 400px;"></div>
+<div id="jungle" style="width: 1275px; height: 400px;"></div>
+<div id="forest" style="width: 1275px; height: 400px;"></div>
+<div id="forest2" style="width: 1275px; height: 400px;"></div>
+<div id="forestroc" style="width: 500px; height: 400px;margin-top:100px;margin-left:80px;">
+<p> ROC curve for Two-Class Decision Forest</p>
+<img src="dec_for_ROC.png" />
+</div>
+<div id="svmroc" style="width: 500px; height: 400px;margin-top:-430px;margin-left:700px;">
+<p> ROC curve for Two-Class Support Vector Machine</p>
+<img src="svm_ROC.png" />
+</div>
+<div id="boostroc" style="width: 500px; height: 400px;margin-top:200px;margin-left:80px;">
+<p> ROC curve for Two-Class Boosted Decision Tree</p>
+<img src="boosted_ROC.png" />
+</div>
+<div id="jungleroc" style="width: 500px; height: 400px;margin-top:-430px;margin-left:700px;">
+<p> ROC curve for Two-Class Decision Jungle</p>
+<img src="dec_jungle_ROC.png" />
+</div>
+<div id="regressionroc" style="width: 500px; height: 400px;margin-top:200px;margin-left:80px;">
+<p> ROC curve for Two-Class Logistic Regression</p>
+<img src="regression_ROC.png" />
+</div>
+<div id="neuralroc" style="width: 500px; height: 400px;margin-top:-430px;margin-left:700px;">
+<p> ROC curve for Two-Class Neural Network</p>
+<img src="neural_ROC.png" />
+</div>
+
+</body>
+</html>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/data.js"></script>
+<script src="https://code.highcharts.com/modules/drilldown.js"></script>
+
+
+<script>
+
+$(function () {
+        $('#regression').highcharts({
+            chart:{
+                type:'spline',				
+            },
+			title:{
+				text:'2 class Boosted Decision Tree'
+				},
+            yAxis: {
+            title: {
+                text: 'Accuracy'
+            }
+        },
+            xAxis: {
+            title: {
+                text: 'No. of leaves'
+            }
+        },
+            plotOptions:{
+                series: {
+				pointWidth: 8,
+                dataLabels: {
+                    enabled: true
+                }
+            }
+			
+            },
+            series: [{
+					name:"Accuracy",
+                showInLegend: false,
+                data: [[5,92.1],
+[10,92.7],
+[20,92.5],
+[40,92],
+[60,91.8],
+[80,91.6],
+[100,92.5],
+[150,91],
+[200,91.4],
+[250,90.7],
+[300,91.3],
+[400,90.9],
+[500,91],
+[700,91.5],
+[1000,91.7]]
+            }]
+        });
+    });
+    
+$(function () {
+        $('#boost').highcharts({
+            chart:{
+                type:'spline',				
+            },
+			title:{
+				text:'2 Class Neural Network'
+				},
+            yAxis: {
+            title: {
+                text: 'Accuracy'
+            }
+        },
+            xAxis: {
+            title: {
+                text: 'No. of Hidden Layers'
+            }
+        },
+            plotOptions:{
+                series: {
+				pointWidth: 8,
+                dataLabels: {
+                    enabled: true
+                }
+            }
+            },
+            series: [{
+			name: 'Accuracy',
+                showInLegend: false,
+                data: [[1,91.9],
+[5,90.2],
+[10,90.9],
+[20,91.2],
+[40,90.8],
+[60,91.3],
+[80,91],
+[100,90.9],
+[150,90.7],
+[200,90.9],
+[250,91.7],
+[300,91.2],
+[400,91.9],
+[500,91.2],
+[700,91.2],
+[1000,91.2]]
+            }]
+        });
+    });
+    
+
+$(function () {
+        $('#jungle').highcharts({
+            chart:{
+                type:'spline',				
+            },
+			title:{
+				text:'2 Class Decision Jungle'
+				},
+            yAxis: {
+            title: {
+                text: 'Accuracy'
+            }
+        },
+            xAxis: {
+            title: {
+                text: 'No. of DAGs'
+            }
+        },
+            plotOptions:{
+                series: {
+				pointWidth: 8,
+                dataLabels: {
+                    enabled: true
+                }
+            }
+            },
+            series: [{
+			name:'Accuracy',
+                showInLegend: false,
+                data: [[5,91.4],
+[10,91.2],
+[20,91.7],
+[40,91.6],
+[60,91.4],
+[80,91.3],
+[100,91.4],
+[150,91.5],
+[200,91.4],
+[300,91.4],
+[400,91.4],
+[500,91.5],
+[700,91.5],
+[1000,91.5]]
+            }]
+        });
+    });
+    
+
+$(function () {
+        $('#forest').highcharts({
+            chart:{
+                type:'spline',				
+            },
+			title:{
+				text:'2 Class Decision Forest(No. of trees : 8)'
+				},
+            yAxis: {
+            title: {
+                text: 'Accuracy'
+            }
+        },
+            xAxis: {
+            title: {
+                text: 'Maximum Depth'
+            }
+        },
+            plotOptions:{
+                series: {
+				pointWidth: 8,
+                dataLabels: {
+                    enabled: true
+                }
+            }
+            },
+            series: [{
+				name:'Accuracy',
+                showInLegend: false,
+                data: [[10,90.1],
+[15,89.9],
+[20,89.7],
+[25,89.6],
+[35,89.5],
+[50,89.5],
+[100,89.5],
+[200,89.5],
+[300,89.5],
+[400,89.5],
+[500,89.5]]
+            }]
+        });
+    });
+
+$(function () {
+        $('#forest2').highcharts({
+            chart:{
+                type:'spline',				
+            },
+			title:{
+				text:'2 Class Decision Forest (Maximum depth : 8)'
+				},
+            yAxis: {
+            title: {
+                text: 'Accuracy'
+            }
+        },
+            xAxis: {
+            title: {
+                text: 'No. of Trees'
+            }
+        },
+            plotOptions:{
+                series: {
+				pointWidth: 8,
+                dataLabels: {
+                    enabled: true
+                }
+            }
+            },
+            series: [{
+			name:'Accuracy',
+                showInLegend: false,
+                data: [[10,90.4],
+[15,90.4],
+[20,90.4],
+[25,90.4],
+[35,90.3],
+[50,90.3],
+[100,90.3],
+[200,90.3],
+[300,90.3],
+[400,90.3],
+[500,90.3]]
+            }]
+        });
+    });
+</script>
